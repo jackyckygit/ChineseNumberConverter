@@ -14,6 +14,12 @@ describe('convertChineseNumber', () => {
     });
 
     test('converts tens Chinese numbers', () => {
+        expect(convertChineseNumber('十一')).toBe(11);
+        expect(convertChineseNumber('廿一')).toBe(21);
+        expect(convertChineseNumber('卅一')).toBe(31);
+    });
+
+    test('converts tens Chinese numbers', () => {
         expect(convertChineseNumber('十')).toBe(10);
         expect(convertChineseNumber('二十')).toBe(20);
         expect(convertChineseNumber('三十')).toBe(30);
@@ -43,5 +49,10 @@ describe('convertChineseNumber', () => {
         expect(convertChineseNumber('九千九百九十九')).toBe(9999);
         expect(convertChineseNumber('一万')).toBe(10000);
         expect(convertChineseNumber('一亿')).toBe(100000000);
+    });
+
+    test('converts complex Chinese numbers', () => {
+        expect(convertChineseNumber('一四六')).toBe(146);
+        expect(convertChineseNumber('二零四六')).toBe(2046);
     });
 });

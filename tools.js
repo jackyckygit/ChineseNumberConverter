@@ -10,6 +10,7 @@ const chineseToNumberMap = {
     '八': 8,
     '九': 9,
     '十': 10,
+    '拾': 10,
     '廿': 20,
     '叁': 30,
     '卅': 30,
@@ -25,12 +26,19 @@ const chineseToNumberMap = {
 function convertChineseNumber(chineseNumber) {
     let temp = 0;
     let unit = 1;
+    let digitOnly = true;
 
     for (let i = chineseNumber.length - 1; i >= 0; i--) {
         const char = chineseNumber[i];
         const num = chineseToNumberMap[char];
 
+        if (num >= 10) {
+            // a unit char exists in the number
+            digitOnly = false;
+        }
+
         if (num >= 10 && i === 0) {
+            // it is a unit at the beginning of the number, no need to set the unit
             temp += num;
         } else if (num >= 10) {
             if (num > unit) {
@@ -39,6 +47,9 @@ function convertChineseNumber(chineseNumber) {
                 unit *= num;
             }
         } else {
+            if (digitOnly && (i != chineseNumber.length - 1)) {
+                unit = Math.pow(10, chineseNumber.length - i - 1);
+            }
             temp += num * unit;
         }
 
