@@ -52,6 +52,7 @@ describe('convertChineseNumber', () => {
     });
 
     test('converts complex Chinese numbers', () => {
+        expect(convertChineseNumber('一O一')).toBe(101);
         expect(convertChineseNumber('一四六')).toBe(146);
         expect(convertChineseNumber('二零四六')).toBe(2046);
     });

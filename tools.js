@@ -1,4 +1,5 @@
 const chineseToNumberMap = {
+    'O': 0,
     '零': 0,
     '一': 1,
     '二': 2,
